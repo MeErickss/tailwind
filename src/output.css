@@ -554,99 +554,36 @@ video {
   --tw-contain-style:  ;
 }
 
-*{
-  padding: 0;
+.my-20 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
-body{
-  padding-left: 3vw;
+.flex {
+  display: flex;
 }
 
-.corpo{
-  width: 100%;
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-full {
   height: 100%;
 }
 
-.header{
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  height: 15vh;
+.w-full {
+  width: 100%;
 }
 
-.card{
-  display: flex;
+.flex-col {
   flex-direction: column;
-  border-bottom: 1px solid grey;
-  border-radius: 10px;
-  width: 32%;
-  height: 70vh;
 }
 
-article{
-  text-align: center;
+.items-center {
+  align-items: center;
 }
 
-.head{
-  position: relative;
-  width: 31vw;
-}
-
-.landscape{
-  width: 100%;
-  border-radius: 10px;
-  height: 25vh;
-}
-
-.pfp{
-  position: absolute;
-  bottom: -70px;
-  right: 31%;
-  border-radius: 50%;
-  border: 5px solid white;
-}
-
-.name{
-  margin-top: 60px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.login{
-  font-size: 1.2em;
-  color: gray;
-}
-
-nav{
-  margin-top: 20px;
-  width: 100%;
-  padding: 20px;
-}
-
-section{
-  padding: 20px;
-}
-
-.nameR{
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.description{
-  margin-top: 5px;
-  color: gray;
-}
-
-.language{
-  background-color: rgb(204, 203, 203);
-  padding: 3px;
-  border-radius: 5px;
-}
-
-button{
-  background-color: blueviolet;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
