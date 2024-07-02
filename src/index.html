@@ -7,14 +7,18 @@
   <script src="script.js" defer></script>
 </head>
 <body class="truncate">
-    <div class="w-full h-full p-10">
+
+    <!-- npx tailwindcss -i ./src/input.css -o ./src/output.css --watch -->
+    <!-- MeErickss -->
+
+    <div corpo class="w-full h-full p-10">
         <div header>
             <label>Usuário Github</label>
             <input inpt class="mx-4 p-2 px-4" type="text" placeholder="Insira seu nome">
             <button btn class="text-white bg-violet-900 rounded p-2" btn>Adicionar</button>
         </div>
 
-        <main class="w-1/4 h-3/5 py-10 border-b-2 border-slate-400 rounded">
+        <main card id="card" class="w-1/4 h-3/5 py-10 border-b-2 border-slate-400 rounded hidden">
             <header>
                 <div class="head">
                     <img class="rounded h-64 w-full" src="landscape.jpeg" alt="background">
@@ -24,7 +28,7 @@
                     <img pfp class="rounded-full absolute -mt-24 border-8 border-white" width="150" src="pfp.jpg" alt="profile picture">
                     <div class="py-14 h-16">
                         <p name class="text-2xl">João da Silva</p>
-                        <span class="text-slate-600" login class="login">@joaozinho</span>
+                        <span login class="text-slate-600" class="login">@joaozinho</span>
                     </div>
                 </article>
             </header>
