@@ -1,5 +1,3 @@
-const card = document.querySelector('[card]')
-
 const imgs = [
     "https://img.freepik.com/fotos-gratis/uma-pintura-de-um-lago-de-montanha-com-uma-montanha-ao-fundo_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1719792000&semt=ais_user", "https://img.freepik.com/fotos-gratis/pico-da-montanha-nevada-sob-a-majestade-generativa-da-galaxia-estrelada-ai_188544-9650.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1719964800&semt=ais_user",
     "https://i.pinimg.com/736x/60/63/da/6063da107454d50c1d7786cc2c2bac75.jpg",
@@ -22,55 +20,60 @@ function getApiGithUB(nameU){
 
             let data = await res.json()
 
-            perfil.innerHTML = `<header>
-                <div class="head">
-                    <img class="rounded h-64 w-full" src="${imgs[Math.floor(Math.random() * (imgs.length))]}" alt="background">
-                </div>
-            </header><article class="flex flex-wrap justify-center text-center">
-                    <img pfp class="rounded-full absolute -mt-24 border-8 border-white" width="150" src="${data.avatar_url}" alt="profile picture">
-                    <div class="py-14 h-16">
-                        <p name class="text-2xl">${data.name}</p>
-                        <span login class="text-slate-600" class="login">@${data.login}</span>
+            cartoes.innerHTML += `<main ${nameU} id="${nameU}" class="w-1/4 h-3/5 py-10 px-10 border-b-2 border-slate-400 rounded">
+                <header>
+                    <div class="head">
+                        <img class="rounded h-64 w-full" src="${imgs[Math.floor(Math.random() * (imgs.length))]}" alt="background">
                     </div>
-                </article>
-            </header>
+                </header><article class="flex flex-wrap justify-center text-center">
+                        <img pfp class="rounded-full absolute -mt-24 border-8 border-white" width="150" src="${data.avatar_url}" alt="profile picture">
+                        <div class="py-14 h-16">
+                            <p name class="text-2xl">${data.name}</p>
+                            <span login class="text-slate-600" class="login">@${data.login}</span>
+                        </div>
+                    </article>
+                </header>
+    
+                <nav repos class="py-10">
+                    <p repositorios><strong>REPOSITÓRIOS</strong></p>
+                </nav>
+                <div perfil></div>
+            </main>`
 
-            <nav repos class="py-10">
-                <p repositorios><strong>REPOSITÓRIOS</strong></p>
-            </nav>`
+            let card = document.querySelector(`[${nameU}]`)
 
-            card.style = "display: block;"
-            getRepos(nameU)
+            fetch(`https://api.github.com/users/${nameU}/repos`).then(
+                async res => {
+                    if( !res.ok){
+                        throw new Error(res.status)
+                    }
+        
+                    const repos = document.querySelector('[repos]')
+        
+                    let data = await res.json()
+                    for (let i = 0; i<data.length; i++){
+                        let project = document.createElement('div')
+        
+                        project.innerHTML = `<section class="px-5 my-4 h-24 rounded">
+                            <strong nameR class="nameR">${(data[i].name)}</strong>
+                            <p description class="description">${data[i].description}</p>
+                            <span language class="bg-zinc-400 rounded px-4"><strong>#${data[i].language}</strong></span>
+                        </section>`
+                        card.appendChild(project)
+                    }
+        
+                    console.log(data)
+            })
         })
 }
 
-function getRepos(user){
-    fetch(`https://api.github.com/users/${user}/repos`).then(
-        async res => {
-            if( !res.ok){
-                throw new Error(res.status)
-            }
-
-            const repos = document.querySelector('[repos]')
-
-            let data = await res.json()
-            for (let i = 0; i<data.length; i++){
-                let project = document.createElement('div')
-
-                project.innerHTML = `<section class="px-5 my-4 h-24 rounded">
-                    <strong nameR class="nameR">${(data[i].name)}</strong>
-                    <p description class="description">${data[i].description}</p>
-                    <span language class="bg-zinc-400 rounded px-4"><strong>#${data[i].language}</strong></span>
-                </section>`
-                repos.appendChild(project)
-            }
-        })
-}
 
 const inpt = document.querySelector("[inpt]")
 const btn = document.querySelector("[btn]")
-const perfil = document.querySelector("[perfil]")
+const cartoes = document.querySelector("[cartoes]")
 
 btn.addEventListener("click", function(){
-    getApiGithUB(inpt.value)
+    if(document.getElementById(`${inpt.value}`) == null){
+        getApiGithUB(inpt.value)
+    } else{alert("Usuário já inserido")}
 })
